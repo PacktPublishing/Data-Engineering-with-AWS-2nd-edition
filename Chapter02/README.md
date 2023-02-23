@@ -7,6 +7,7 @@ In the ***hands-on activity*** section, you learnt how to access the AWS Command
 
 ### Links
 - **Learn more about S3 bucket naming rules:** https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucketnamingrules.html
+- **AWS CloudShell service:** https://us-east-2.console.aws.amazon.com/cloudshell/home
 
 ### Commands
 #### Create a new Amazon S3 bucket
