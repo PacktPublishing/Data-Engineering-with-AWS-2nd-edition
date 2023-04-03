@@ -14,7 +14,7 @@ In the ***hands-on activity*** section of this chapter, we read through some fic
 
 - Link to diagrams.net - an online architecture design tool: https://www.diagrams.net/.  
 
-**NOTE:** The files linked to below can be downloaded from here (in .drawio format) and then opened in diagrams.net and modified. To download the source files, click on the link, and then click **Raw**. This will display the XML content of the DrawIO file, and you can right-click and then **save-as** to save the file to your computer. Note that the file may be saved with a `.txt` extension, so you may need to rename the file to remove the txt extension, and you should then be able to open the `.drawio` file. 
+**NOTE:** The files linked to below can be downloaded from here (in .drawio format) and then opened in diagrams.net and modified. To download the source files, click on the link, and then right-click the **Raw** button, and select **Save link as**. This will let you download the XML draw.io file which you can then open with diagrams.net. 
 
 - Generic Data Architecture Whiteboard Template (drawio format): [Data-Engineering-Whiteboard-Template.drawio](Data-Engineering-Whiteboard-Template.drawio)
 
