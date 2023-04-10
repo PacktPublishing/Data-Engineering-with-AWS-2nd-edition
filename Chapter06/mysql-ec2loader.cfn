@@ -1,6 +1,6 @@
 ---
 AWSTemplateFormatVersion: 2010-09-09
-Description: A sample template
+Description: Chapter 6 - Data Engineering with AWS
 Parameters:
   DBPassword:
     Type: String
