@@ -1,0 +1,53 @@
+---
+AWSTemplateFormatVersion: 2010-09-09
+Description: A sample template
+Parameters:
+  DBPassword:
+    Type: String
+    NoEcho: true
+    Description: The database admin account password
+    MinLength: 8
+    AllowedPattern: ^[a-zA-Z0-9]*$
+    ConstraintDescription: Password must contain only alphanumeric characters.
+  LatestAmiId:
+    Type: 'AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>'
+    Default: '/aws/service/ami-amazon-linux-latest/al2023-ami-kernel-6.1-x86_64'
+Resources:
+  MySQLInstance:
+    Type: AWS::RDS::DBInstance
+    Properties:
+      AllocatedStorage: 20
+      DBInstanceClass: db.t3.micro
+      Engine: MySQL
+      MasterUsername: admin
+      MasterUserPassword: !Ref DBPassword
+  EC2Instance:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: !Ref LatestAmiId
+      InstanceType: t3.micro
+      UserData:
+        Fn::Base64:
+          Fn::Sub:
+            - | 
+              #!/bin/bash
+
+              yum install -y mariadb105
+
+              curl https://downloads.mysql.com/docs/sakila-db.zip -o sakila.zip
+
+              unzip sakila.zip
+
+              cd sakila-db
+
+              echo "mysql --host=${EndPointAddress} --user=admin --password=${DBPassword} -f < sakila-schema.sql" | tee -a /var/tmp/userdata.log
+
+              mysql --host=${EndPointAddress} --user=admin --password=${DBPassword} -f < sakila-schema.sql | tee -a /var/tmp/userdata.log1
+
+              mysql --host=${EndPointAddress} --user=admin --password=${DBPassword} -f < sakila-data.sql | tee -a /var/tmp/userdata.log2
+
+            - EndPointAddress: !GetAtt MySQLInstance.Endpoint.Address
+      Tags:
+        - Key: Name
+          Value: dataeng-book-ec2-3
+    DependsOn: MySQLInstance  
