@@ -4,7 +4,7 @@ In this chapter, we discussed the 5 V's of data (volume, velocity, variety, vali
 We then reviewed a few different approaches for ignesting data from databases, and from streaming data sources.
 
 ## Hands-on Activity
-In the ***hands-on activity*** section of this chapter, we deployed an **Amazon CloudFormation** template that provisioned an **Amazon RDS MySQL** database instance, as well as an **Amazon EC2** instance, which was used to load a demo database into the MySQL database instance. We then configured **Amazon Database Migration Service (DMS)** to ingest data from the MySQL database, and then we configured **Amazon Kinesis Data Firehose** to ingest streaming data that we generated using the **Amazon Kinesis Data Generator (KDG)**.
+In the ***hands-on activity*** section of this chapter, we deployed an **Amazon CloudFormation** template that provisioned an **Amazon RDS MySQL** database instance, as well as an **Amazon EC2** instance, which was used to load a demo database into the MySQL database instance. We configured **Amazon Database Migration Service (DMS)** to ingest data from the MySQL database, and then we configured **Amazon Kinesis Data Firehose** to ingest streaming data that we generated using the **Amazon Kinesis Data Generator (KDG)**.
 
 ### Deploying MySQL and an EC2 data loader via AWS CloudFormation
 - Download the CloudFormation template from [here](./mysql-ec2loader.cfn)
@@ -58,7 +58,7 @@ In the ***hands-on activity*** section of this chapter, we deployed an **Amazon 
 
 #### Configuring Kinesis Data Firehose for streaming delivery to Amazon S3
 - AWS Management Console - Kinesis Firehose: https://us-east-2.console.aws.amazon.com/firehose/home
-- Kinesis Firehose Delivery Stram Name: `dataeng-firehose-streaming-s3`
+- Kinesis Firehose Delivery Stream Name: `dataeng-firehose-streaming-s3`
 - *S3 Bucket Prefix* for Kinesis Data Firehose: `streaming/!{timestamp:yyyy/MM/}`
 - *S3 Bucket Error Output Prefix* for Kinesis Data Firehose: `!{firehose:error-output-type}/!{timestamp:yyyy/MM/}`
 
@@ -94,7 +94,7 @@ In the ***hands-on activity*** section of this chapter, we deployed an **Amazon 
 #### Querying data with Amazon Athena
 - AWS Management Console - Glue: https://us-east-2.console.aws.amazon.com/glue/home
 - Crawler name: `dataeng-streaming-crawler`
-- Crawler S3 data path: s3://dataeng-landing-zone-<initials>/streaming/
+- Crawler S3 data path: `s3://dataeng-landing-zone-<initials>/streaming/` (**Change \<initials\> to the unique identifier used for your landing zone bucket**)
 - Athena query to validate that data has been successfully ingested using DMS:   
 `select * from streaming limit 20;`
 
