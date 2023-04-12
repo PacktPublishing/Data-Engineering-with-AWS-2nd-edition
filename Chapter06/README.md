@@ -9,7 +9,7 @@ In the ***hands-on activity*** section of this chapter, we deployed an **Amazon 
 ### Deploying MySQL and an EC2 data loader via AWS CloudFormation
 - Download the CloudFormation template from [here](./mysql-ec2loader.cfn)
 
-- AWS Manage Console - CloudFormation: https://us-east-2.console.aws.amazon.com/cloudformation
+- AWS Management Console - CloudFormation: https://us-east-2.console.aws.amazon.com/cloudformation
 
 - CloudFormation Stack Name: `dataeng-aws-chapter6-mysql-ec2`
 
