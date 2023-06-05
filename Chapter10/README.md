@@ -39,11 +39,11 @@ a state machine orchestrated by AWS Step Functions.
 - Example of Step Functions JSON for completed state machine: [ProcessFileStateMachine.json](ProcessFileStateMachine.json)  
   [Note that the ARN references in this state machine are not valid, and would need to be updated to reflect your AWS account number]
 
-#### Configuring Amazon S3 data events
+#### Configuring our S3 bucket to send events to EventBridge
 
 - AWS Management Console - Amazon S3: https://s3.console.aws.amazon.com/s3
 
-#### Create an EventBridge rule for triggering our Step functions state machine
+#### Create an EventBridge rule for triggering our Step Functions state machine
 
 - AWS Management Console - EventBridge: https://console.aws.amazon.com/events/home
 
