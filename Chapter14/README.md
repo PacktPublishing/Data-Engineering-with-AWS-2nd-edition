@@ -112,7 +112,8 @@ select * from "curatedzonedb_iceberg"."streaming_films_ib$manifests"
 select * from "curatedzonedb_iceberg"."streaming_films_ib$history"
 ```
 
-- Use the following statement to do a *time travel* query, where you query the table as it was at a point in the past
+- Use the following statement to do a *time travel* query, where you query the table as it was at a point in the past. **Ensure you change the
+TIMESTAMP in the statement below to be a UTC time between when your first and second snapshots were created**. 
 ```
 SELECT * FROM "curatedzonedb_iceberg"."streaming_films_ib" FOR TIMESTAMP AS OF TIMESTAMP '2023-07-23 19:00:00 UTC' where category_name = 'Documentary'
 ```
@@ -129,7 +130,7 @@ select * from "curatedzonedb_iceberg"."streaming_films_ib$files"
 OPTIMIZE curatedzonedb_iceberg.streaming_films_ib REWRITE DATA USING BIN_PACK
 ```
 
--- Use the following statement to display the list of files that make up the current, optimized, snapshot:
+- Use the following statement to display the list of files that make up the current, optimized, snapshot:
 ```
 select * from "curatedzonedb_iceberg"."streaming_films_ib$files"
 ```
