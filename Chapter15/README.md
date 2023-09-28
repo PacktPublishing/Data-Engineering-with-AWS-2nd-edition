@@ -1,7 +1,7 @@
 # Chapter 15 - Implementing a Data Mesh Strategy
 
 In this chapter we explored the concept of a data mesh approach to organizing data responsibilities within an organization. We started off by
-examining the four core principals of a data mesh:
+examining the **four core principals** of a data mesh:
 
 - Domain-orientated, decentralized data ownership
 - Data as a product
@@ -17,8 +17,8 @@ changing the way that an organization traditionally appraoched data analytics, a
 centralized data and analytics team worked. We then looked at the changes needed for line of business teams, and finally at how there
 were a number of technical challenges to building a data mesh. 
 
-After that we examined the AWS services that can help to build a data mesh, including a look at a recently launched AWS service, Amazon DataZone.
-We also reviewed a sample architecture for building a data mesh using borg AWS services, and 3rd party services. 
+After that we examined the AWS services that can help to build a data mesh, including a look at a recently launched AWS service, **Amazon DataZone**.
+We also reviewed a sample architecture for building a data mesh using both AWS services, and 3rd party services. 
 
 In the hands-on section we looked at practical steps for implementing a data mesh approach on AWS.
 
