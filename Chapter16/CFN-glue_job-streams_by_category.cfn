@@ -19,7 +19,7 @@ Parameters:
 # below to reference the specific path for your S3 bucket
   ScriptLocation:  
     Type: String
-    Default: "s3://data-product-film-gse23/glueETL_code/Glue-streaming_views_by_category.py"	
+    Default: "s3://data-product-film-gse23/glueETL_code/Glue-streaming_views_by_category.py"
 # In the Resources section, we define the AWS resources we want to deploy
 # with this CloudFormation template. In our case, it is just a single Glue
 # job, but a single template can deploy multiple different AWS resources
