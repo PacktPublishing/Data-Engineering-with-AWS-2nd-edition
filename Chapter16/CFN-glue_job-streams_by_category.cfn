@@ -1,0 +1,40 @@
+AWSTemplateFormatVersion: '2010-09-09'
+# CloudFormation template to deploy the streaming view by category
+# Glue job.
+# In the Parameters section we define parameters that can be passed to
+# CloudFormation at deployment time. If no parameters are passed in, then the
+# specified default is used. 
+Parameters: 
+# JobName: The name of the job to be created
+  JobName:  
+    Type: String
+    Default: streaming_views_by_category 
+# The name of the IAM role that the job assumes. It must have access to data, 
+# script, and temporary directory. We created this IAM role via the AWS 
+# console in Chapter 7. 
+  IAMRoleName:  
+    Type: String
+    Default: DataEngGlueCWS3CuratedZoneRole
+# The S3 path where the script for this job is located. Modify the default
+# below to reference the specific path for your S3 bucket
+  ScriptLocation:  
+    Type: String
+    Default: "s3://data-product-film-gse23/glueETL_code/Glue-streaming_views_by_category.py"	
+# In the Resources section, we define the AWS resources we want to deploy
+# with this CloudFormation template. In our case, it is just a single Glue
+# job, but a single template can deploy multiple different AWS resources
+Resources:                                      
+# Below we define our Glue job, and we substitute parameters in from the 
+# above section. 
+  GlueJob:
+    Type: AWS::Glue::Job
+    Properties:
+      Role: !Ref IAMRoleName
+      Description: Glue job to calculate number of streams by category
+      Command:
+        Name: glueetl
+        ScriptLocation: !Ref ScriptLocation
+      WorkerType: G.1X
+      NumberOfWorkers: 2
+      GlueVersion: "3.0"
+      Name: Streaming Views by Category
