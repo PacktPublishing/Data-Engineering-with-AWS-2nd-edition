@@ -39,7 +39,7 @@ mkdir git
 cd git
 ```
 
-#### Setting up our AWS CodeCommit repositories
+#### Setting up our AWS CodeCommit repository
 
 - AWS Management Console - CodeCommit: https://us-east-2.console.aws.amazon.com/codesuite/codecommit/repositories
 
@@ -62,5 +62,52 @@ aws s3 mb s3://data-product-film-initials
 
 #### Adding a Glue ETL script and CloudFormation template into our repository
 
-- Access the Glue-streaming_views_by_category.py file in this repository, and paste it into a new file in your Cloud9 IDE environment.
+- Access the [Glue-streaming_views_by_category.py](/Chapter16/Glue-streaming_views_by_category.py) file in this repository, and paste it into a new file in your Cloud9 IDE environment.
+
+  **Make sure to change the S3 bucket path on Line 47 of the code to match the name of your curated zone bucket**
+
+- Access the [CFN-glue_job-streams_by_category.cfn](/Chapter16/CFN-glue_job-streams_by_category.cfn) file in this repository, and paste it into a new file in your Cloud9 IDE environment.
+
+  **Make sure to change the S3 bucket path on Line 22 of the template to match the name of the bucket you created earlier in this exercise**
+
+- Commit the newly created files into your repository by running the following commands in the Cloud9 terminal
+```
+git add .
+git commit -m "Initial commit of CloudFormation template and Glue code for our streaming views by category data product"
+git push
+```
+
+- Access the [CodeCommit](https://us-east-1.console.aws.amazon.com/codesuite/codecommit/repositories) service in the AWS Management Console, and ensure that the two files have been written to your repository
+
+#### Automating deployment of our Glue code
+
+- AWS Management Console - CodePipeline: https://us-east-1.console.aws.amazon.com/codesuite/codepipeline/pipelines
+
+#### Automating deployment of our Glue job
+
+- AWS Management Console - IAM: https://us-east-1.console.aws.amazon.com/iamv2/home
+
+- Edit the `DataEngGlueCWS3CuratedZoneRole`, and replace the current **Trust relationship** JSON with the JSON in [DataEngGlueCWS3CuratedZoneRole-trust-policy.json](/Chapter16/DataEngGlueCWS3CuratedZoneRole-trust-policy.json) in this repository
+
+- In the permissions tab for the role, edit the DataEngGlueCWS3CuratedZoneWrite role to add in S3 permissions for the new bucket you created earlier. The new S3 permissions should look as follows (but reflect the name of your buckets):
+```
+{
+            "Effect": "Allow",
+            "Action": [
+                "s3:GetObject"
+            ],
+            "Resource": [
+                "arn:aws:s3:::dataeng-landing-zone-gse23/*",
+                "arn:aws:s3:::dataeng-clean-zone-gse23/*",
+                "arn:aws:s3:::data-product-film-gse23/*"
+            ]
+        }
+```
+
+
+
+
+
+
+
 
